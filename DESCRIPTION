@@ -27,3 +27,5 @@ Description: This package provides a simple guidance tool for selecting appropri
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
+URL: https://github.com/adves182/statguide
+BugReports: https://github.com/adves182/statguide/issues
