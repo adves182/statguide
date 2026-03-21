@@ -1,0 +1,29 @@
+Package: statguide
+Type: Package
+Title: Simple Guide to Basic Statistical Tests
+Version: 0.1.0
+Authors@R: c(
+    person(
+      "Ada", "Vestli",
+      email = "adves1313@uib.no",
+      role = c("aut", "cre")
+    )
+  )
+Description: This package provides a simple guidance tool for selecting appropriate
+    basic statistical tests based on the structure of a dataset. It is designed to
+    support learning and decision-making, not to replace statistical judgement. The
+    package handles a limited set of introductory-level scenarios and requires the
+    user to explicitly specify the outcome and predictor variables when needed,
+    ensuring that no incorrect assumptions are made about variable roles. Supported
+    analyses include group comparison tests for numeric outcomes with categorical
+    predictors, chi-square or Fisher tests for categorical associations, correlation
+    for symmetric numeric–numeric relationships, and simple linear regression when
+    the user defines the direction of the relationship. More advanced methods such
+    as ordinal regression, multinomial regression, logistic regression with
+    continuous predictors, mixed-effects models, repeated-measures designs, survival
+    analysis, and multivariate techniques are intentionally outside the scope of the
+    package. The aim is to offer clear, structured guidance for common and
+    unambiguous statistical situations.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
