@@ -12,7 +12,10 @@
 #'   for chi-square tests).
 #'
 #' @import ggplot2
+#' @importFrom stats aov chisq.test glm predict binomial cooks.distance
 #' @export
+
+
 plot_diagnostics <- function(data, outcome, predictor) {
 
   test_type <- choose_test(data, outcome, predictor)

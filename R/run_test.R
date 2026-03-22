@@ -14,6 +14,7 @@
 #'   \item{result}{The model or test output object}
 #' }
 #'
+#' @importFrom stats t.test aov cor.test chisq.test glm binomial
 #' @examples
 #' run_test(PlantGrowth, outcome = "weight", predictor = "group")
 #'
