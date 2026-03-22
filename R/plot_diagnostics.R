@@ -14,6 +14,7 @@
 #' @export
 plot_diagnostics <- function(data, outcome, predictor) {
   library(ggplot2)
+  library(ggmosaic)
 
   test_type <- choose_test(data, outcome, predictor)
   y <- data[[outcome]]
@@ -70,14 +71,15 @@ plot_diagnostics <- function(data, outcome, predictor) {
   }
 
   # -------------------------
-  # Chi-square diagnostics
+  # Chi-square diagnostics (ggplot mosaic)
   # -------------------------
   if (test_type == "chi_square") {
     tbl <- table(y, x)
-
-    plots$mosaic <- graphics::mosaicplot(tbl, main = "Mosaic Plot")
-
     chi <- suppressWarnings(chisq.test(tbl))
+
+    plots$mosaic <- ggplot(data) +
+      ggmosaic::geom_mosaic(aes(x = product(x), fill = y)) +
+      labs(title = "Mosaic Plot")
 
     plots$expected_observed <- list(
       observed = tbl,
@@ -96,7 +98,6 @@ plot_diagnostics <- function(data, outcome, predictor) {
 
     model <- glm(y_factor ~ x, data = data, family = binomial)
 
-    # Residuals vs fitted
     plots$residuals_fitted <- ggplot(data.frame(
       fitted = fitted(model),
       residuals = residuals(model, type = "deviance")
@@ -105,14 +106,12 @@ plot_diagnostics <- function(data, outcome, predictor) {
       geom_hline(yintercept = 0, linetype = "dashed") +
       labs(title = "Residuals vs Fitted")
 
-    # Cook's distance
     cooks <- cooks.distance(model)
     plots$cooks <- ggplot(data.frame(index = seq_along(cooks), cooks = cooks),
                           aes(x = index, y = cooks)) +
       geom_bar(stat = "identity") +
       labs(title = "Cook's Distance (Influence)")
 
-    # ROC curve
     probs <- predict(model, type = "response")
     truth <- as.numeric(y_factor) - 1
     roc_obj <- pROC::roc(truth, probs)
