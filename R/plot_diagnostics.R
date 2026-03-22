@@ -11,9 +11,9 @@
 #' @return A named list containing ggplot objects (and observed/expected tables
 #'   for chi-square tests).
 #'
+#' @import ggplot2
 #' @export
 plot_diagnostics <- function(data, outcome, predictor) {
-  library(ggplot2)
 
   test_type <- choose_test(data, outcome, predictor)
   y <- data[[outcome]]
