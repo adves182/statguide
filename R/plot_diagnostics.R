@@ -9,12 +9,18 @@
 #' @param predictor A string giving the name of the predictor variable.
 #'
 #' @return A named list containing ggplot objects (and observed/expected tables
-#'   for chi-square tests).
+#'   for chi-square tests). Print individual plots using \code{plots$boxplot},
+#'   \code{plots$qq}, or other elements returned in the list.
+#'
+#' @examples
+#' # Diagnostics for numeric outcome vs categorical predictor
+#' plots <- plot_diagnostics(PlantGrowth, "weight", "group")
+#' plots$boxplot   # Boxplot of groups
+#' plots$qq        # Q-Q plot for normality
 #'
 #' @import ggplot2
 #' @importFrom stats aov chisq.test glm predict binomial cooks.distance
 #' @export
-
 
 plot_diagnostics <- function(data, outcome, predictor) {
 

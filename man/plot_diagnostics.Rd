@@ -15,10 +15,18 @@ plot_diagnostics(data, outcome, predictor)
 }
 \value{
 A named list containing ggplot objects (and observed/expected tables
-  for chi-square tests).
+  for chi-square tests). Print individual plots using \code{plots$boxplot},
+  \code{plots$qq}, or other elements returned in the list.
 }
 \description{
 Generates diagnostic plots appropriate for the statistical test selected by
 \code{choose_test()}. These visuals help assess assumptions such as
 normality, outliers, linearity, and model fit.
+}
+\examples{
+# Diagnostics for numeric outcome vs categorical predictor
+plots <- plot_diagnostics(PlantGrowth, "weight", "group")
+plots$boxplot   # Boxplot of groups
+plots$qq        # Q-Q plot for normality
+
 }
