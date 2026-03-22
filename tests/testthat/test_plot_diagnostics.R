@@ -8,6 +8,7 @@ test_that("plot_diagnostics works for t-test", {
 
   expect_true("boxplot" %in% names(plots))
   expect_true("qq" %in% names(plots))
+  expect_s3_class(plots$boxplot, "ggplot")
 })
 
 test_that("plot_diagnostics works for ANOVA", {
@@ -21,6 +22,7 @@ test_that("plot_diagnostics works for ANOVA", {
   expect_true("boxplot" %in% names(plots))
   expect_true("residuals_fitted" %in% names(plots))
   expect_true("qq" %in% names(plots))
+  expect_s3_class(plots$boxplot, "ggplot")
 })
 
 test_that("plot_diagnostics works for correlation", {
@@ -32,6 +34,7 @@ test_that("plot_diagnostics works for correlation", {
   plots <- plot_diagnostics(df, "y", "x")
 
   expect_true("scatter" %in% names(plots))
+  expect_s3_class(plots$scatter, "ggplot")
 })
 
 test_that("plot_diagnostics works for chi-square", {
@@ -58,11 +61,12 @@ test_that("plot_diagnostics works for logistic regression", {
   expect_true("residuals_fitted" %in% names(plots))
   expect_true("cooks" %in% names(plots))
   expect_true("roc" %in% names(plots))
+  expect_s3_class(plots$roc, "ggplot")
 })
 
 test_that("logistic regression requires binary outcome", {
   df <- data.frame(
-    y = factor(c("A","B","C")),
+    y = factor(c("A", "B", "C")),
     x = rnorm(3)
   )
 
