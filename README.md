@@ -7,7 +7,36 @@
 
 <!-- badges: end -->
 
-The goal of statguide is to …
+`statguide` is an R package designed to be used as a guidance tool, to
+help beginners choose, understand, and run basic statistical tests.  
+It is designed to support learning and decision-making, not to replace
+statistical judgement.
+
+It guides the user through four steps:
+
+1.  **Identify variable types**  
+2.  **Choose an appropriate statistical test**  
+3.  **Explain *why* that test was chosen**  
+4.  **Generate diagnostic plots and run the test**
+
+The goal is to make statistical reasoning transparent, accessible, and
+reproducible.
+
+## Overview of the workflow
+
+The package handles a limited set of introductory-level scenarios and
+requires the user to explicitly specify the outcome and predictor
+variables when needed, ensuring that no incorrect assumptions are made
+about variable roles.
+
+The package is built around a simple, consistent pipeline:
+
+- choose_test(data, outcome, predictor)  
+- explain_choice(data, outcome, predictor)  
+- plot_diagnostics(data, outcome, predictor)  
+- run_test(data, outcome, predictor)
+
+Each function focuses on one clear task.
 
 ## Installation
 
@@ -21,33 +50,45 @@ pak::pak("adves182/statguide")
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
+Here is a complete example using the built‑in `PlantGrowth` dataset:
 
 ``` r
 library(statguide)
-## basic example code
+
+# Inspect the data
+head(PlantGrowth)
+
+# Step 1: Choose a test
+choose_test(PlantGrowth, outcome = "weight", predictor = "group")
+
+# Step 2: Explain the reasoning
+explain_choice(PlantGrowth, "weight", "group")
+
+# Step 3: Visual diagnostics
+plots <- plot_diagnostics(PlantGrowth, "weight", "group")
+plots$boxplot
+plots$qq
+
+# Step 4: Run the test
+run_test(PlantGrowth, "weight", "group")
 ```
 
-What is special about using `README.Rmd` instead of just `README.md`?
-You can include R chunks like so:
+## Why use `statguide`?
 
-``` r
-summary(cars)
-#>      speed           dist       
-#>  Min.   : 4.0   Min.   :  2.00  
-#>  1st Qu.:12.0   1st Qu.: 26.00  
-#>  Median :15.0   Median : 36.00  
-#>  Mean   :15.4   Mean   : 42.98  
-#>  3rd Qu.:19.0   3rd Qu.: 56.00  
-#>  Max.   :25.0   Max.   :120.00
-```
+Beginners may struggle with:
 
-You’ll still need to render `README.Rmd` regularly, to keep `README.md`
-up-to-date. `devtools::build_readme()` is handy for this.
+- choosing the right test
+- understanding why it is appropriate
+- checking assumptions
+- interpreting the results
 
-You can also embed plots, for example:
+This package aims to simplify these steps and guide the user through the
+process.
 
-<img src="man/figures/README-pressure-1.png" alt="" width="100%" />
+## Supported tests
 
-In that case, don’t forget to commit and push the resulting figure
-files, so they display on GitHub and CRAN.
+Currently, `statguide` supports: - t-test  
+- ANOVA  
+- correlation  
+- chi-square test  
+- logistic regression
