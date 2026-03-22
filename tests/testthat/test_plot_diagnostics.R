@@ -43,6 +43,7 @@ test_that("plot_diagnostics works for chi-square", {
   plots <- suppressWarnings(plot_diagnostics(df, "y", "x"))
 
   expect_true("mosaic" %in% names(plots))
+  expect_s3_class(plots$mosaic, "ggplot")
   expect_true("expected_observed" %in% names(plots))
 })
 
