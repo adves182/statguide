@@ -2,6 +2,7 @@
 
 export(choose_test)
 export(count_groups)
+export(explain_choice)
 export(identify_var_type)
 export(plot_diagnostics)
 export(run_test)
