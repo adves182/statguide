@@ -7,7 +7,7 @@
 identify_var_type(x)
 }
 \arguments{
-\item{x}{A vector.}
+\item{x}{A single variable (vector), such as `data$column`.}
 }
 \value{
 A character string: "numeric" or "categorical".
@@ -18,5 +18,7 @@ Determines whether a variable is numeric or categorical.
 \examples{
 identify_var_type(1:10)
 identify_var_type(factor(c("A", "B")))
+identify_var_type(PlantGrowth$weight)
+identify_var_type(PlantGrowth$group)
 
 }
