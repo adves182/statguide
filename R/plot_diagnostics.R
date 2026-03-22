@@ -14,7 +14,6 @@
 #' @export
 plot_diagnostics <- function(data, outcome, predictor) {
   library(ggplot2)
-  library(ggmosaic)
 
   test_type <- choose_test(data, outcome, predictor)
   y <- data[[outcome]]
@@ -77,9 +76,16 @@ plot_diagnostics <- function(data, outcome, predictor) {
     tbl <- table(y, x)
     chi <- suppressWarnings(chisq.test(tbl))
 
-    plots$mosaic <- ggplot(data) +
-      ggmosaic::geom_mosaic(aes(x = product(x), fill = y)) +
-      labs(title = "Mosaic Plot")
+    df_mosaic <- as.data.frame(tbl)
+    colnames(df_mosaic) <- c("y", "x", "count")
+
+    df_mosaic <- df_mosaic |>
+      dplyr::group_by(x) |>
+      dplyr::mutate(prop = count / sum(count))
+
+    plots$mosaic <- ggplot(df_mosaic, aes(x = x, y = prop, fill = y)) +
+      geom_col(position = "fill") +
+      labs(title = "Mosaic Plot", y = "Proportion")
 
     plots$expected_observed <- list(
       observed = tbl,
