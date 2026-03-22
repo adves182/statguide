@@ -8,7 +8,7 @@
 #' @param outcome A string giving the name of the outcome variable.
 #' @param predictor A string giving the name of the predictor variable.
 #'
-#' @return A named list containing ggplot objects (and observed/expected tables
+#' @return A named list containing ggplot objects (and observed/expected tables. Use `names(plots)` to see available diagnostics.
 #'   for chi-square tests). Print individual plots using \code{plots$boxplot},
 #'   \code{plots$qq}, or other elements returned in the list.
 #'
