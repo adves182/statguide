@@ -26,8 +26,8 @@ reproducible.
 
 The package handles a limited set of introductory-level scenarios and
 requires the user to explicitly specify the outcome and predictor
-variables when needed, ensuring that no incorrect assumptions are made
-about variable roles.
+variables, ensuring that no incorrect assumptions are made about
+variable roles.
 
 The package is built around a simple, consistent pipeline:
 
@@ -87,7 +87,9 @@ process.
 
 ## Supported tests
 
-Currently, `statguide` supports: - t-test  
+Currently, `statguide` supports:
+
+- t-test  
 - ANOVA  
 - correlation  
 - chi-square test  

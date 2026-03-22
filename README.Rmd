@@ -31,7 +31,7 @@ It guides the user through four steps:
 The goal is to make statistical reasoning transparent, accessible, and reproducible.
 
 ## Overview of the workflow
-The package handles a limited set of introductory-level scenarios and requires the user to explicitly specify the outcome and predictor variables when needed, ensuring that no incorrect assumptions are made about variable roles.
+The package handles a limited set of introductory-level scenarios and requires the user to explicitly specify the outcome and predictor variables, ensuring that no incorrect assumptions are made about variable roles.
 
 The package is built around a simple, consistent pipeline:
 
@@ -91,6 +91,7 @@ This package aims to simplify these steps and guide the user through the process
 ## Supported tests
 
 Currently, `statguide` supports:
+
 - t-test  
 - ANOVA  
 - correlation  
