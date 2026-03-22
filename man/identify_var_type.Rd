@@ -2,31 +2,21 @@
 % Please edit documentation in R/identify_var_type.R
 \name{identify_var_type}
 \alias{identify_var_type}
-\title{Identify variable types for outcome and predictor}
+\title{Identify variable type}
 \usage{
-identify_var_type(data, outcome, predictor)
+identify_var_type(x)
 }
 \arguments{
-\item{data}{A data frame containing the variables.}
-
-\item{outcome}{A string giving the name of the outcome variable.}
-
-\item{predictor}{A string giving the name of the predictor variable.}
+\item{x}{A vector.}
 }
 \value{
-A named list with two elements:
-\describe{
-  \item{outcome_type}{Character string: "numeric", "categorical", or "other"}
-  \item{predictor_type}{Character string: "numeric", "categorical", or "other"}
-}
+A character string: "numeric" or "categorical".
 }
 \description{
-Determines whether the outcome and predictor variables are numeric,
-categorical, or other. This function is designed to be used inside the
-main workflow where the user supplies a dataset and specifies which
-variables are the outcome and predictor.
+Determines whether a variable is numeric or categorical.
 }
 \examples{
-identify_var_type(PlantGrowth, outcome = "weight", predictor = "group")
+identify_var_type(1:10)
+identify_var_type(factor(c("A", "B")))
 
 }

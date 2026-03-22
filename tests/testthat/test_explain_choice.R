@@ -8,7 +8,7 @@ test_that("explain_choice works for t-test", {
 
   expect_equal(out$test, "t_test")
   expect_true(grepl("two groups", out$explanation))
-  expect_true(grepl("normal", out$explanation))
+  expect_true(grepl("normal distributions", out$explanation))
 })
 
 test_that("explain_choice works for ANOVA", {
@@ -20,8 +20,8 @@ test_that("explain_choice works for ANOVA", {
   out <- explain_choice(df, "y", "x")
 
   expect_equal(out$test, "anova")
-  expect_true(grepl("more than two groups", out$explanation))
-  expect_true(grepl("variances", out$explanation))
+  expect_true(grepl("three or more groups", out$explanation))
+  expect_true(grepl("normal residuals", out$explanation))
 })
 
 test_that("explain_choice works for correlation", {

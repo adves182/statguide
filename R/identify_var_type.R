@@ -1,44 +1,18 @@
-#' Identify variable types for outcome and predictor
+#' Identify variable type
 #'
-#' Determines whether the outcome and predictor variables are numeric,
-#' categorical, or other. This function is designed to be used inside the
-#' main workflow where the user supplies a dataset and specifies which
-#' variables are the outcome and predictor.
+#' Determines whether a variable is numeric or categorical.
 #'
-#' @param data A data frame containing the variables.
-#' @param outcome A string giving the name of the outcome variable.
-#' @param predictor A string giving the name of the predictor variable.
+#' @param x A vector.
 #'
-#' @return A named list with two elements:
-#' \describe{
-#'   \item{outcome_type}{Character string: "numeric", "categorical", or "other"}
-#'   \item{predictor_type}{Character string: "numeric", "categorical", or "other"}
-#' }
+#' @return A character string: "numeric" or "categorical".
 #'
 #' @examples
-#' identify_var_type(PlantGrowth, outcome = "weight", predictor = "group")
+#' identify_var_type(1:10)
+#' identify_var_type(factor(c("A", "B")))
 #'
 #' @export
-identify_var_type <- function(data, outcome, predictor) {
-
-  # internal helper to classify a single variable
-  classify <- function(x) {
-    if (is.numeric(x)) {
-      "numeric"
-    } else if (is.factor(x) || is.character(x)) {
-      "categorical"
-    } else {
-      "other"
-    }
-  }
-
-  # extract variables
-  out_var <- data[[outcome]]
-  pred_var <- data[[predictor]]
-
-  # return types
-  list(
-    outcome_type = classify(out_var),
-    predictor_type = classify(pred_var)
-  )
+identify_var_type <- function(x) {
+  if (is.numeric(x)) return("numeric")
+  if (is.factor(x) || is.character(x)) return("categorical")
+  stop("Unsupported variable type.")
 }

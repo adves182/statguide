@@ -4,22 +4,16 @@
 \alias{count_groups}
 \title{Count the number of groups in a predictor variable}
 \usage{
-count_groups(data, predictor)
+count_groups(x)
 }
 \arguments{
-\item{data}{A data frame containing the variables.}
-
-\item{predictor}{A string giving the name of the predictor variable.}
+\item{x}{A vector (factor or character).}
 }
 \value{
-An integer giving the number of unique groups in the predictor.
+Integer number of unique groups.
 }
 \description{
 Determines how many unique groups (levels or categories) the predictor
 variable contains. This function is designed to support the decision tree
 for choosing the appropriate statistical test.
-}
-\examples{
-count_groups(PlantGrowth, predictor = "group")
-
 }

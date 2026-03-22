@@ -17,19 +17,18 @@
 #' @export
 choose_test <- function(data, outcome, predictor) {
 
-  # Identify variable types
-  types <- identify_var_type(data, outcome, predictor)
-  outcome_type <- types$outcome_type
-  predictor_type <- types$predictor_type
+  # Identify variable types (updated for new identify_var_type())
+  outcome_type <- identify_var_type(data[[outcome]])
+  predictor_type <- identify_var_type(data[[predictor]])
 
-  # If both numeric → correlation or regression
+  # If both numeric → correlation
   if (outcome_type == "numeric" && predictor_type == "numeric") {
     return("correlation")
   }
 
   # If outcome numeric + predictor categorical → t-test or ANOVA
   if (outcome_type == "numeric" && predictor_type == "categorical") {
-    n_groups <- count_groups(data, predictor)
+    n_groups <- count_groups(data[[predictor]])
 
     if (n_groups == 2) {
       return("t_test")
@@ -46,7 +45,7 @@ choose_test <- function(data, outcome, predictor) {
     return("chi_square")
   }
 
-  # If outcome categorical + predictor numeric → logistic regression (optional)
+  # If outcome categorical + predictor numeric → logistic regression
   if (outcome_type == "categorical" && predictor_type == "numeric") {
     return("logistic_regression")
   }

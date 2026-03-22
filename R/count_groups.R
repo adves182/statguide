@@ -4,35 +4,14 @@
 #' variable contains. This function is designed to support the decision tree
 #' for choosing the appropriate statistical test.
 #'
-#' @param data A data frame containing the variables.
-#' @param predictor A string giving the name of the predictor variable.
+#' @param x A vector (factor or character).
 #'
-#' @return An integer giving the number of unique groups in the predictor.
-#'
-#' @examples
-#' count_groups(PlantGrowth, predictor = "group")
+#' @return Integer number of unique groups.
 #'
 #' @export
-count_groups <- function(data, predictor) {
-
-  x <- data[[predictor]]
-
-  # If factor, count levels
-  if (is.factor(x)) {
-    return(length(levels(x)))
+count_groups <- function(x) {
+  if (!is.factor(x) && !is.character(x)) {
+    stop("count_groups() requires a categorical variable.")
   }
-
-  # If character, count unique values
-  if (is.character(x)) {
-    return(length(unique(x)))
-  }
-
-  # If numeric, treat unique values as groups
-  if (is.numeric(x)) {
-    return(length(unique(x)))
-  }
-
-  # Otherwise, return NA with a warning
-  warning("Unsupported variable type for counting groups.")
-  return(NA_integer_)
+  length(unique(x))
 }
