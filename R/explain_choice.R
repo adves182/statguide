@@ -1,19 +1,23 @@
-#' Explain why a statistical test was chosen
+#' Explain the reasoning behind the chosen statistical test
 #'
-#' Provides a clear, structured explanation of why \code{choose_test()}
-#' selected a particular statistical test. The explanation is based on
-#' variable types, number of groups, and the relationship between outcome
-#' and predictor variables.
+#' Provides a plain-language explanation of why a particular statistical test
+#' was selected based on the variable types and structure of the data. This
+#' function is designed to support learning by making the decision process
+#' transparent and easy to follow.
 #'
 #' @param data A data frame containing the variables.
 #' @param outcome A string giving the name of the outcome variable.
 #' @param predictor A string giving the name of the predictor variable.
 #'
-#' @return A list with two elements:
-#'   \itemize{
-#'     \item \code{test}: the name of the chosen test
-#'     \item \code{explanation}: a human-readable explanation
-#'   }
+#' @return A character string explaining the logic behind the test choice.
+#'
+#' @examples
+#' # Explanation for ANOVA selection
+#' explain_choice(PlantGrowth, "weight", "group")
+#'
+#' # Explanation for correlation
+#' df <- data.frame(x = rnorm(20), y = rnorm(20))
+#' explain_choice(df, "x", "y")
 #'
 #' @export
 explain_choice <- function(data, outcome, predictor) {

@@ -2,7 +2,7 @@
 % Please edit documentation in R/explain_choice.R
 \name{explain_choice}
 \alias{explain_choice}
-\title{Explain why a statistical test was chosen}
+\title{Explain the reasoning behind the chosen statistical test}
 \usage{
 explain_choice(data, outcome, predictor)
 }
@@ -14,15 +14,20 @@ explain_choice(data, outcome, predictor)
 \item{predictor}{A string giving the name of the predictor variable.}
 }
 \value{
-A list with two elements:
-  \itemize{
-    \item \code{test}: the name of the chosen test
-    \item \code{explanation}: a human-readable explanation
-  }
+A character string explaining the logic behind the test choice.
 }
 \description{
-Provides a clear, structured explanation of why \code{choose_test()}
-selected a particular statistical test. The explanation is based on
-variable types, number of groups, and the relationship between outcome
-and predictor variables.
+Provides a plain-language explanation of why a particular statistical test
+was selected based on the variable types and structure of the data. This
+function is designed to support learning by making the decision process
+transparent and easy to follow.
+}
+\examples{
+# Explanation for ANOVA selection
+explain_choice(PlantGrowth, "weight", "group")
+
+# Explanation for correlation
+df <- data.frame(x = rnorm(20), y = rnorm(20))
+explain_choice(df, "x", "y")
+
 }
