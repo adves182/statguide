@@ -14,15 +14,20 @@ choose_test(data, outcome, predictor)
 \item{predictor}{A string giving the name of the predictor variable.}
 }
 \value{
-A character string naming the recommended statistical test.
+A character string naming the selected statistical test.
 }
 \description{
-Based on the variable types (numeric or categorical) and the number of
-groups in the predictor, this function selects an appropriate statistical
-test. It uses helper functions \code{identify_var_type()} and
-\code{count_groups()} to determine the structure of the data.
+Determines the appropriate statistical test based on the variable types of
+the outcome and predictor. This function identifies whether variables are
+numeric or categorical and selects a suitable introductory-level test such as
+a t-test, ANOVA, correlation, chi-square test, or logistic regression.
 }
 \examples{
-choose_test(PlantGrowth, outcome = "weight", predictor = "group")
+# Numeric outcome and categorical predictor → ANOVA
+choose_test(PlantGrowth, "weight", "group")
+
+# Numeric–numeric relationship → correlation
+df <- data.frame(x = rnorm(20), y = rnorm(20))
+choose_test(df, "x", "y")
 
 }
