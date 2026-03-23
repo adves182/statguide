@@ -38,6 +38,21 @@ The package is built around a simple, consistent pipeline:
 
 Each function focuses on one clear task.
 
+## Choosing outcome and predictor variables
+
+`statguide` requires the user to explicitly specify:
+
+- **outcome**(response/dependent variable): the variable you want to
+  explain, compare, or model  
+- **predictor**(independent variable): the variable you think might
+  influence or be associated with the outcome
+
+A simple rule of thumb:
+
+**Which variable depends on the other?**  
+- The one that *changes* → outcome  
+- The one that might *explain the change* → predictor
+
 ## Installation
 
 You can install the development version of statguide from
@@ -92,5 +107,4 @@ Currently, `statguide` supports:
 - t-test  
 - ANOVA  
 - correlation  
-- chi-square test  
-- logistic regression
+- chi-square test
